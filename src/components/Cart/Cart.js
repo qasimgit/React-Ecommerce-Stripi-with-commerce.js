@@ -12,9 +12,9 @@ const Cart = ({
 }) => {
   const classes = useStyles();
 
-  console.log("cart comp", cartItems);
   const CartEmpty = !cartItems?.line_items.length;
 
+  // Empty Card Componenet when it cart is empty
   const EmptyCard = () => {
     return (
       <Typography variant="subtitle1">
@@ -26,6 +26,7 @@ const Cart = ({
     );
   };
 
+  // Filled Cart Component
   const FilledCart = () => {
     return (
       <>
@@ -73,6 +74,7 @@ const Cart = ({
       </>
     );
   };
+
   return (
     <Container>
       <div className={classes.toolbar} />

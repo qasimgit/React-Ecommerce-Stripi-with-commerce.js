@@ -11,6 +11,7 @@ import useStyles from "./styles";
 
 const CartItems = ({ item, handleUpdateCartQty, handleDeleteItem }) => {
   const classes = useStyles();
+
   return (
     <Card>
       <CardMedia

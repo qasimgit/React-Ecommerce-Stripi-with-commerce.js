@@ -6,10 +6,12 @@ import PaymentForm from "../PaymentForm";
 import Confirmation from "../Confirmation";
 
 const Checkout = () => {
-  const steps = ["Shipping Address", "Payment Details"];
-  const [activeStep, setActiveStep] = useState(1);
   const classes = useStyles();
 
+  const steps = ["Shipping Address", "Payment Details"];
+  const [activeStep, setActiveStep] = useState(1);
+
+  // Steps to follow in form
   const Form = () => {
     if (activeStep == 0) {
       return <AddressForm />;
