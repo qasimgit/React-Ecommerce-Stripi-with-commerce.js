@@ -1,12 +1,12 @@
-import { Router } from "@material-ui/icons";
 import { useEffect, useState } from "react";
-import { Switch } from "react-router-dom";
-import { Navbar, Products } from "./components";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar, Products, Cart } from "./components";
 import { commerce } from "./lib/commerce";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState();
+  console.log("cart", cart);
 
   //fecthcing prodicts from commerce
 
@@ -38,19 +38,20 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(cart);
+    console.log("cart", cart);
   }, [cart]);
 
   return (
-    // <Router>
-    //   <Switch>
-    //     <Route />
-    <div>
-      <Navbar totalItems={cart.total_items} />
-      <Products products={products} AddToCart={handleAddToCart} />
-    </div>
-    //   </Switch>
-    // </Router>
+    <Router>
+      <Navbar totalItems={cart?.total_items} />
+      <Switch>
+        <Route exact path="/">
+          <Products products={products} AddToCart={handleAddToCart} />
+        </Route>
+        <Route exact path="/cart"></Route>
+        <Cart cartItems={cart} />
+      </Switch>
+    </Router>
   );
 };
 
