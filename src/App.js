@@ -5,15 +5,12 @@ import { commerce } from "./lib/commerce";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState();
-  const [quantity, setQuantity] = useState();
-  console.log("cart", cart);
+  const [cart, setCart] = useState({});
 
   //fecthcing prodicts from commerce
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-    console.log("data", data);
     setProducts(data);
   };
 
@@ -50,15 +47,11 @@ const App = () => {
   };
   //  Component Did Mount
   useEffect(() => {
+    console.log("cart", cart);
     fetchProducts();
     fetchCart();
-    console.log("products", products);
   }, []);
-
-  useEffect(() => {
-    console.log("cart", cart);
-  }, [cart]);
-
+  console.log("cart APPPAPAPAPAPAPAPAPAP++++++++++++++++++++++++", cart);
   return (
     <Router>
       <Navbar totalItems={cart?.total_items} />
@@ -75,7 +68,7 @@ const App = () => {
           />
         </Route>
         <Route exact path="/checkout">
-          <Checkout />
+          <Checkout cart={cart} />
         </Route>
       </Switch>
     </Router>
